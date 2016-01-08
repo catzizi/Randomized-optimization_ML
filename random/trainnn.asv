@@ -1,0 +1,19 @@
+function err = trainnn (w)
+
+% pack weights in the matrices for net
+load net.mat;
+
+% 7 x 20
+net.IW{1} = reshape ( w(1:(7*20)
+
+y = reshape (net.IW{1}, 1, size( net.IW{1}, 1) * size ( net.IW{1}, 2 ) );
+y = [ y  reshape( net.LW{2}, 1, size( net.LW{2}, 1) * size (net.LW{2},2) ) ];
+
+%calc error
+err = sum ( (L - sim (net, A)).^2 );
+
+% alter weights
+% change net.IW{1}
+% change net.LW{2}, net.LW{3+3}, net.LW{4+2*3}, net.LW{5+3*3}
+
+end

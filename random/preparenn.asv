@@ -1,0 +1,29 @@
+%stupid preprocessing
+data = textread('wdbc.data', '%s', 'delimiter', ',', 'emptyvalue', 0);
+data = reshape(data, 32, 569 );
+A = str2double(data(3:end, :));
+L = double(cell2mat ( data(2,:) ) == 'M');
+
+[pn,meanp,stdp] = prestd(A);
+[ptrans,transMat] = prepca(pn,0.001);
+
+A = ptrans;
+
+% A is feature vector ( 20 dims )
+
+%setup network
+net = newff ( minmax(A), [ 7 1 ] );
+save net.mat net
+
+%% the real function ...
+
+%calc error
+err = sum ( (L - sim (net, A)).^2 );
+
+% alter weights
+% change net.IW{1}
+% change net.LW{2}, net.LW{3+3}, net.LW{4+2*3}, net.LW{5+3*3}
+
+
+y = reshape (net.IW{1}, 1, size( net.IW{1}, 1) * size ( net.IW{1}, 2 ) );
+y = [ y  reshape( net.LW{2}, 1, size( net.LW{2}, 1) * size (net.LW{2},2) ) ];

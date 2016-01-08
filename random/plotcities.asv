@@ -1,0 +1,5 @@
+load cities;
+plot ( cities(1,:), cities(2,:), 'b+' )
+xlim ( [ (min (cities(1,:)) - 1000) (max(cities(1,:)) + 1000) ] )
+ylim ( [ (min (cities(2,:)) - 1000) (max(cities(2,:)) + 1000) ] )
+

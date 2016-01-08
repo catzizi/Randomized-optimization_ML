@@ -1,0 +1,42 @@
+package opt.example;
+
+import shared.Instance;
+import opt.EvaluationFunction;
+
+
+/**
+ * A traveling salesman evaluation function that works with
+ * routes that are encoded as sorts.  That is the route
+ * is the permutaiton of indices found by sorting the data.
+ * @author Andrew Guillory gtg008g@mail.gatech.edu
+ * @version 1.0
+ */
+public class RasFunction implements EvaluationFunction {
+
+    /**
+     * Make a new traveling salesman evaluation function
+     * @param points the points at which the cities are located
+     */
+
+    public RasFunction() {}
+
+
+    /**
+     * @see opt.EvaluationFunction#value(opt.OptimizationData)
+     */
+    public double value(Instance d) {
+        
+	// get x and y
+	double[] ddata = new double[d.size()];
+        for (int i = 0; i < ddata.length; i++) {
+            ddata[i] = d.getContinuous(i);
+        }
+
+	double x = ddata[0] / 4e9 - 20;
+	double y = ddata[1] / 4e9 - 20;
+
+	return 20 + 3 * (x*x + y*y) -10*(Math.cos(2*Math.PI*x)+Math.cos(2*Math.PI*y));
+
+    }
+
+}

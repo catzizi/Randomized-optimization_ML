@@ -1,0 +1,12 @@
+
+[X,Y] = meshgrid ( -5:0.05:5, -5:0.05:5);
+Z = Ras(X,Y);
+surf (X,Y,Z, 'EdgeColor', 'none');
+figure;
+
+[X,Y] = meshgrid ( -5:0.05:5, -5:0.05:5);
+Z = Ras(X,Y);
+
+[C,h] = contour(X,Y,Z);
+text_handle = clabel(C,h);
+set(text_handle,'BackgroundColor',[1 1 .6], 'Edgecolor',[.7 .7 .7]);

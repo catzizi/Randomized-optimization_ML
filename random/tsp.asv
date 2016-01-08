@@ -1,0 +1,10 @@
+function dist = tsp (x)
+
+load cities
+[k,l] = sort(x);
+
+% l is permutation
+dists = cities(:, (l,length(l)) + 1) - cities(:,l);
+dist = sum(sqrt(sum ( dists .* dists)));
+
+end
